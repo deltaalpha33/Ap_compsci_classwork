@@ -4,6 +4,7 @@ public class Student implements Attendee{
 	
 	String firstName;
 	String lastName;
+	boolean isPresent = false;
 	
 	public Student(String firstName, String lastName){
 		this.firstName = firstName;
@@ -32,6 +33,9 @@ public class Student implements Attendee{
 		}
 		else {
 			reportString += this.firstName;
+			for(int i = 0; i < 20 - this.firstName.length(); i++) {
+				reportString += " ";
+			}
 		}
 		
 		
@@ -43,7 +47,32 @@ public class Student implements Attendee{
 			truncatedLastName = this.lastName;
 		}
 		
-		int spaces = 
+		for(int i = 0; i < 20 - truncatedLastName.length(); i++) {
+			reportString += " ";
+		}
+		
+		if(this.isPresent) {
+			reportString += "PRESENT";
+		}
+		else {
+			reportString += "ABSENT";
+		}
 		return reportString;
+	}
+	
+	public boolean isPresent() {
+		return this.isPresent;
+	}
+	
+	public boolean matches(String last) {
+		return this.lastName.toLowerCase().equals(last.toLowerCase());
+	}
+
+	public boolean matches(String first, String last) {
+		return this.firstName.toLowerCase().equals(first.toLowerCase()) && this.lastName.toLowerCase().equals(last.toLowerCase());
+	}
+	
+	public void setPresent(boolean present) {
+		this.isPresent = present;
 	}
 }
