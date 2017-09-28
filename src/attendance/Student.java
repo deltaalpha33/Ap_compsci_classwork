@@ -29,7 +29,7 @@ public class Student implements Attendee{
 		//cut off the last three letters and replace with "..."
 		String reportString = "";
 		if(this.firstName.length() > 20) {
-			reportString += this.firstName.substring(0, 18) + "...";
+			reportString += this.firstName.substring(0, 17) + "...";
 		}
 		else {
 			reportString += this.firstName;
@@ -41,12 +41,13 @@ public class Student implements Attendee{
 		
 		String truncatedLastName = "";
 		if(this.lastName.length() > 20) {
-			truncatedLastName += this.lastName.substring(0, 18) + "...";
+			truncatedLastName += this.lastName.substring(0, 17) + "...";
 		}
 		else {
 			truncatedLastName = this.lastName;
 		}
 		
+		reportString += truncatedLastName;
 		for(int i = 0; i < 20 - truncatedLastName.length(); i++) {
 			reportString += " ";
 		}
