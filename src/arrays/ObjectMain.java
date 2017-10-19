@@ -38,14 +38,24 @@ public class ObjectMain {
 	
 	public Person[] selectGroup(Person[] population, int length) {
 		Person[] returnArr = new Person[length];
+		Person currentPerson;
 		for(int a = 0; a < length; a++) {
-			while()
+			do {
+				int index = (int)(Math.random()*population.length);
+				currentPerson = population[index];
+				
+			}while(this.arrayContains(returnArr, currentPerson));
 		}
 		return returnArr;
 	}
 	
 	public boolean arrayContains(Person[] population, Object item) {
-		
+		for(Person value: population) {
+			if(value == item) {
+				return true;
+			}
+		}
+		return false;
 	}
 	public Borough randomBorough() {
 		return Borough.NY_BOROUGHS[(int)(Math.random() * Borough.NY_BOROUGHS.length)];
