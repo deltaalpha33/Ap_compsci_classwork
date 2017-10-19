@@ -1,12 +1,14 @@
 package arrays;
 
+import java.util.Arrays;
+
 public class ObjectMain {
 	
 	public ObjectMain() {
-		Object[] people = new Object[12];
+		Person[] people = new Person[12];
 		this.populate(people);
-		people[0] = new Thing("toaster oven");
-		for(Object p : people) {
+		Person[] group = selectGroup(people, 5);
+		for(Object p : group) {
 			System.out.println(p);
 		}
 		
@@ -35,6 +37,15 @@ public class ObjectMain {
 		}
 		
 	}
+	private int countCommonalities(Object[] arr1, Object[] arr2) {
+		int  count=0;
+		for(int i = 0; i < arr1.length; i++) {
+			if(arr1[i] == arr2[i]) {
+				count ++;
+			}
+		}
+		return count;
+	}
 	
 	public Person[] selectGroup(Person[] population, int length) {
 		Person[] returnArr = new Person[length];
@@ -45,6 +56,7 @@ public class ObjectMain {
 				currentPerson = population[index];
 				
 			}while(this.arrayContains(returnArr, currentPerson));
+			returnArr[a] = currentPerson;
 		}
 		return returnArr;
 	}
