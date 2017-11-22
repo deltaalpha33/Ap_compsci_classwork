@@ -5,13 +5,23 @@ import java.util.Arrays;
 public class ObjectMain {
 	
 	public ObjectMain() {
-		Person[] people = new Person[12];
-		this.populate(people);
-		Person[] group = selectGroup(people, 5);
-		for(Object p : group) {
-			System.out.println(p);
-		}
+//		Person[] people = new Person[12];
+//		this.populate(people);
+//		Person[] group = selectGroup(people, 5);
+//		for(Object p : group) {
+//			System.out.println(p);
+//		}
 		
+		int numberOfPeople = 120;
+		Person[] people = new Person[numberOfPeople];
+		populate(people);
+		//Person[] group = selectGroup(people, numberOfPeople);
+		//analyzeCommonalities(people, group);
+		for(Person p: people) {
+			p.mingle(people);
+			System.out.println(p);
+			//p.stateYourFriends();
+		}
 	}
 	
 
@@ -47,6 +57,20 @@ public class ObjectMain {
 		return count;
 	}
 	
+	private void analyzeCommonalities(Person[] people, Person[] group) {
+		double totalCommonality = 0;
+		double averageCommonality = 0;
+		double trials = 500;
+		for(int i = 0; i < trials; i++) {
+			group = selectGroup(people, people.length);
+			totalCommonality += this.countCommonalities(people, group);
+		}
+		averageCommonality = totalCommonality/trials;
+		System.out.println("After "+trials+" trials, shuffling "+people.length+" people, on average,"+averageCommonality+" people end up in the same position where they started");
+	}
+	
+
+
 	public Person[] selectGroup(Person[] population, int length) {
 		Person[] returnArr = new Person[length];
 		Person currentPerson;
